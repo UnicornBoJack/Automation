@@ -20,29 +20,24 @@ object CreateProfileScreen {
     private val seekBarVolume: Matcher<View> = withId(R.id.seekBarVolumeNotifications)
     private val saveProfile: Matcher<View> = withId(R.id.bSaveProfile)
 
-    //TODO Enter the name of the rule etName;
     fun actionEnterProfileName(profileName: String) {
         actionWaitForView(profileNameField).perform(
-            clearText(), TypeTextAction(profileName),
-            closeSoftKeyboard()
+            clearText(), TypeTextAction(profileName), closeSoftKeyboard()
         )
     }
 
-    //TODO Change sound mode; checkBoxChangeSoundMode (choose - Normal) spinnerSoud
     fun actionChangeSoundMode() {
         actionWaitForView(changeSoundBox).perform(click())
         actionWaitForView(spinnerSound).perform(click())
         actionWaitForView(withText(NORMAL_MODE)).perform(click())
     }
 
-    //TODO Change volumes (Ringtone and notifications); checkBoxChangeVolumeNotification (seekBarVolumeNotif)
     fun actionChangeVolume() {
         actionFindElement(volumeBox).perform(scrollTo(), click())
         actionFindElement(seekBarVolume).perform(setProgress(7))
 
     }
 
-    //TODO Save the profile; bSaveProfile
     fun actionSaveProfile() {
         actionFindElement(saveProfile).perform(scrollTo(), click())
     }

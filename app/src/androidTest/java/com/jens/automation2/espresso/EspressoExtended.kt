@@ -9,7 +9,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import junit.framework.AssertionFailedError
 import org.hamcrest.Matcher
-import java.util.concurrent.TimeoutException
 
 object EspressoExtended {
     const val DEFAULT_TIMEOUT_MILLS = 10_000L
@@ -27,7 +26,7 @@ object EspressoExtended {
         val startTime = System.currentTimeMillis()
         val endTime = startTime + timeoutMills
 
-        var lastException: Throwable?
+        var lastException: Throwable
 
         do {
             try {
@@ -44,6 +43,6 @@ object EspressoExtended {
             }
         } while (System.currentTimeMillis() < endTime)
 
-        throw lastException ?: TimeoutException("There are no matches on View")
+        throw lastException
     }
 }

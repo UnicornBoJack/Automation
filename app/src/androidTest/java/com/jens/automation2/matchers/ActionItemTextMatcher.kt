@@ -9,7 +9,5 @@ class ActionItemTextMatcher(private val itemName: String) : TypeSafeMatcher<Item
         description.appendText("action item with text: $itemName")
     }
 
-    override fun matchesSafely(item: Item): Boolean {
-        return item.text == itemName
-    }
+    override fun matchesSafely(item: Item): Boolean = (item.text == itemName)
 }

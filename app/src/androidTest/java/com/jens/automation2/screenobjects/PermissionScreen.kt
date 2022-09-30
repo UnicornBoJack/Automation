@@ -9,7 +9,6 @@ import com.jens.automation2.espresso.EspressoExtended.actionWaitForView
 import com.jens.automation2.matchers.actionClickOnText
 import org.hamcrest.Matcher
 
-
 object PermissionScreen : WithTabs {
     private val requestPermissions: Matcher<View> = withId(R.id.bRequestPermissions)
 

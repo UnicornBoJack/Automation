@@ -23,43 +23,37 @@ object CreateTimeframeScreen {
     private val repeatEvery: Matcher<View> = withId(R.id.etRepeatEvery)
     private val saveTimeFrame: Matcher<View> = withId(R.id.bSaveTimeFrame)
 
-
     fun actionCreateTimeFrame(
-        hoursStart: Int, minutesStart: Int, hoursEnd: Int, minutesEnd: Int,
+        hoursStart: Int,
+        minutesStart: Int,
+        hoursEnd: Int,
+        minutesEnd: Int,
         repeatEverySeconds: String
     ) {
-
         setStartDate(hoursStart, minutesStart)
         setEndDate(hoursEnd, minutesEnd)
         actionWaitForView(dateRadioButton).perform(click())
         actionChooseAllDays()
         actionFindElement(repeat).perform(scrollTo(), click())
         actionWaitForView(repeatEvery).perform(
-            clearText(), TypeTextAction(repeatEverySeconds),
-            closeSoftKeyboard()
+            clearText(), TypeTextAction(repeatEverySeconds), closeSoftKeyboard()
         )
         actionWaitForView(saveTimeFrame).perform(click())
     }
 
-    fun setStartDate(hoursStart: Int, minutesStart: Int) {
+    private fun setStartDate(hoursStart: Int, minutesStart: Int) {
         actionFindElement(startDate).perform(setTime(hoursStart, minutesStart))
     }
 
-    fun setEndDate(hoursEnd: Int, minutesEnd: Int) {
+    private fun setEndDate(hoursEnd: Int, minutesEnd: Int) {
         actionFindElement(endDate).perform(setTime(hoursEnd, minutesEnd))
     }
 
     private fun actionChooseAllDays() {
-        actionWaitForView(monday)
-            .perform(scrollTo(), click())
-        actionFindElement(tuesday)
-            .perform(scrollTo(), click())
-        actionFindElement(wednesday)
-            .perform(scrollTo(), click())
-        actionFindElement(thursday)
-            .perform(scrollTo(), click())
-        actionFindElement(friday)
-            .perform(scrollTo(), click())
+        actionWaitForView(monday).perform(scrollTo(), click())
+        actionFindElement(tuesday).perform(scrollTo(), click())
+        actionFindElement(wednesday).perform(scrollTo(), click())
+        actionFindElement(thursday).perform(scrollTo(), click())
+        actionFindElement(friday).perform(scrollTo(), click())
     }
-
 }

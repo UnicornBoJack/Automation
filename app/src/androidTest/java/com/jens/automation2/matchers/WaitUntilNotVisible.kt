@@ -4,13 +4,12 @@ import androidx.test.espresso.NoMatchingRootException
 import androidx.test.espresso.NoMatchingViewException
 import androidx.test.espresso.ViewInteraction
 import junit.framework.AssertionFailedError
-import java.util.concurrent.TimeoutException
 
 fun ViewInteraction.waitForViewDoesNotExist(timeout: Long, text: String): ViewInteraction {
     val startTime = System.currentTimeMillis()
     val endTime = startTime + timeout
 
-    var lastException: Throwable?
+    var lastException: Throwable
 
     do {
         try {
@@ -27,5 +26,5 @@ fun ViewInteraction.waitForViewDoesNotExist(timeout: Long, text: String): ViewIn
         }
     } while (System.currentTimeMillis() < endTime)
 
-    throw lastException ?: TimeoutException("Element still on View")
+    throw lastException
 }

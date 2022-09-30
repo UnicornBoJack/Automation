@@ -29,7 +29,7 @@ import org.hamcrest.TypeSafeMatcher
 class ToastMatcher(private val maxFailures: Int = DEFAULT_MAX_FAILURES) : TypeSafeMatcher<Root>() {
 
     /** Restrict number of false results from matchesSafely to avoid endless loop */
-    private var failures = 5
+    private var failures = 0
 
     override fun describeTo(description: Description) {
         description.appendText("is toast")
@@ -55,9 +55,8 @@ class ToastMatcher(private val maxFailures: Int = DEFAULT_MAX_FAILURES) : TypeSa
     }
 
     companion object {
-
         /** Default for maximum number of retries to wait for the toast to pop up */
-        private const val DEFAULT_MAX_FAILURES = 5000
+        private const val DEFAULT_MAX_FAILURES = 10
 
         fun onToast(text: String, maxRetries: Int = DEFAULT_MAX_FAILURES) = onView(withText(text))
             .inRoot(isToast(maxRetries))!!
@@ -69,5 +68,4 @@ class ToastMatcher(private val maxFailures: Int = DEFAULT_MAX_FAILURES) : TypeSa
             return ToastMatcher(maxRetries)
         }
     }
-
 }

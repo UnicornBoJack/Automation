@@ -21,8 +21,7 @@ object CreateRuleScreen {
 
     fun actionTypeRuleName(text: String) {
         actionWaitForView(ruleNameTextField).perform(
-            clearText(), TypeTextAction(text),
-            closeSoftKeyboard()
+            clearText(), TypeTextAction(text), closeSoftKeyboard()
         )
     }
 
@@ -52,5 +51,4 @@ object CreateRuleScreen {
     fun assertionCheckActionNameInList(text: String): ViewInteraction {
         return actionWaitForView(withText(text)).check(matches(isDisplayed()))
     }
-
 }

@@ -1,23 +1,16 @@
 package com.jens.automation2.tests
 
 import androidx.test.ext.junit.rules.activityScenarioRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.LargeTest
 import com.jens.automation2.ActivityMainTabLayout
 import com.jens.automation2.screenobjects.CreateProfileScreen
 import com.jens.automation2.screenobjects.ProfilesScreen
 import com.jens.automation2.screenobjects.Strings.simpleProfileName
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-@LargeTest
 class CreateSimpleProfileTest {
-
     @get:Rule
     var activityScenarioRule = activityScenarioRule<ActivityMainTabLayout>()
-
     /**
     Test 2.
      * Scenario
@@ -36,14 +29,12 @@ class CreateSimpleProfileTest {
             actionOpenProfile()
             actionClickOnAddProfile()
         }
-
         with(CreateProfileScreen) {
             actionEnterProfileName(simpleProfileName)
             actionChangeSoundMode()
             actionChangeVolume()
             actionSaveProfile()
         }
-
         with(ProfilesScreen) {
             assertionCheckCreatedProfile(simpleProfileName)
             actionDeleteProfileByName(simpleProfileName)

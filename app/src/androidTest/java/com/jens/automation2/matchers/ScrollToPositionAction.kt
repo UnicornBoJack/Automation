@@ -14,15 +14,15 @@ class ScrollToPositionAction(private val position: Int) : ViewAction {
         return "Scroll RecyclerView to position: $position"
     }
 
-    override fun getConstraints(): Matcher<View> {
-        return allOf(isAssignableFrom(RecyclerView::class.java), isDisplayed())
-    }
+    override fun getConstraints(): Matcher<View> =
+        allOf(isAssignableFrom(RecyclerView::class.java), isDisplayed())
 
     override fun perform(uiController: UiController?, view: View?) {
         val recyclerView = view as RecyclerView
         recyclerView.layoutManager?.smoothScrollToPosition(
             recyclerView, null, position
         )
+        //can't change to uiController.waitMaintThreadUntilIdleAtLeast
         Thread.sleep(500)
         uiController?.loopMainThreadUntilIdle()
     }

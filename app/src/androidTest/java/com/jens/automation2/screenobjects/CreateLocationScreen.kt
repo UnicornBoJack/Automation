@@ -17,35 +17,28 @@ object CreateLocationScreen {
     private val getCurrentLocation: Matcher<View> = ViewMatchers.withId(R.id.bGetPosition)
     private val saveLocation: Matcher<View> = ViewMatchers.withId(R.id.bSavePoi)
 
-    //TODO type name  etPoiName
     fun actionTypeLocationName(name: String) {
         actionWaitForView(locationNameTextField).perform(
-            clearText(), TypeTextAction(name),
-            closeSoftKeyboard()
+            clearText(), TypeTextAction(name), closeSoftKeyboard()
         )
     }
 
-    //TODO GetCurrentLocation bGetPosition
     fun actionClickOnCurrentLocationButton() {
         actionWaitForView(getCurrentLocation).perform(click())
     }
 
-    //TODO withText(Ok).perform(click()) X 2
     fun clickOnOkButton() {
         actionWaitForView(withText(B_OK)).perform(click())
     }
 
     fun waitAndClickOnYesBtn() {
-        actionWaitForView(withText(B_YES))
-            .perform(click())
+        actionWaitForView(withText(B_YES)).perform(click())
     }
 
-    //TODO withText(Yes).perform(click())
     fun clickOnYesButton() {
         actionWaitForView(withText(B_YES)).perform(click())
     }
 
-    //TODO SaveLocation bSavePoi
     fun actionClickOnSaveLocationButton() {
         actionWaitForView(saveLocation).perform(click())
     }

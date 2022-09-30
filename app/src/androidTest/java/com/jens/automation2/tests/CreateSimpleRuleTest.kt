@@ -1,8 +1,6 @@
 package com.jens.automation2.tests
 
 import androidx.test.ext.junit.rules.activityScenarioRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.LargeTest
 import com.jens.automation2.ActivityMainTabLayout
 import com.jens.automation2.screenobjects.CreateRuleScreen
 import com.jens.automation2.screenobjects.CreateTimeframeScreen
@@ -19,14 +17,10 @@ import com.jens.automation2.screenobjects.Strings.repeatEverySeconds
 import com.jens.automation2.screenobjects.Strings.timeframe
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-@LargeTest
 class CreateSimpleRuleTest {
     @get:Rule
     var activityScenarioRule = activityScenarioRule<ActivityMainTabLayout>()
-
     /**
      * Scenario
      * Step 1. Open Rule tab;
@@ -51,7 +45,6 @@ class CreateSimpleRuleTest {
             actionClickAddTriggerButton()
             actionChooseTriggerWithName(timeframe)
         }
-
         with(CreateTimeframeScreen) {
             actionCreateTimeFrame(
                 hoursStart,
@@ -61,14 +54,12 @@ class CreateSimpleRuleTest {
                 repeatEverySeconds
             )
         }
-
         with(CreateRuleScreen) {
             assertionCheckTriggerNameInList(TRIGGER_TEXT)
             actionAddAction(elementInActionList)
             assertionCheckActionNameInList(ACTION_TEXT)
             actionSaveRule()
         }
-
         with(RulesScreen) {
             assertRuleIsCreatedByName(SIMPLE_RULE_NAME)
             actionDeleteRuleByName(SIMPLE_RULE_NAME)

@@ -1,7 +1,6 @@
 package com.jens.automation2.tests
 
 import androidx.test.ext.junit.rules.activityScenarioRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.jens.automation2.ActivityMainTabLayout
 import com.jens.automation2.screenobjects.CreateLocationScreen
 import com.jens.automation2.screenobjects.LocationScreen
@@ -10,14 +9,10 @@ import com.jens.automation2.screenobjects.Strings.locationName
 import com.jens.automation2.screenobjects.Strings.whileUsingApp
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 class CreateSimpleLocationTest {
-
     @get:Rule
     var activityScenarioRule = activityScenarioRule<ActivityMainTabLayout>()
-
     /**
      * Scenario
      * Step 1. Wipe data in 'Device Manager' for all Emulators
@@ -31,12 +26,10 @@ class CreateSimpleLocationTest {
             actionOpenLocationTab()
             actionClickOnAddLocationButton()
         }
-
         with(PermissionScreen) {
             actionClickContinueBtn()
             whileUsingTheApp(whileUsingApp)
         }
-
         with(CreateLocationScreen) {
             actionTypeLocationName(locationName)
             actionClickOnCurrentLocationButton()
@@ -44,7 +37,6 @@ class CreateSimpleLocationTest {
             waitAndClickOnYesBtn()
             actionClickOnSaveLocationButton()
         }
-
         with(LocationScreen) {
             assertLocationIsCreatedByName(locationName)
             actionDeleteLocationByName(locationName)

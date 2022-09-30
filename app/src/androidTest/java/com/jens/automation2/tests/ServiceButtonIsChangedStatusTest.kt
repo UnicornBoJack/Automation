@@ -1,7 +1,6 @@
 package com.jens.automation2.tests
 
 import androidx.test.ext.junit.rules.activityScenarioRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.jens.automation2.ActivityMainTabLayout
 import com.jens.automation2.screenobjects.CreateRuleScreen
 import com.jens.automation2.screenobjects.CreateTimeframeScreen
@@ -20,12 +19,9 @@ import com.jens.automation2.screenobjects.Strings.repeatEverySeconds
 import com.jens.automation2.screenobjects.Strings.timeframe
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import com.jens.automation2.screenobjects.Strings.hoursStart as hoursStart1
 
-@RunWith(AndroidJUnit4::class)
 class ServiceButtonIsChangedStatusTest {
-
     @get:Rule
     var activityScenarioRule = activityScenarioRule<ActivityMainTabLayout>()
 
@@ -36,18 +32,15 @@ class ServiceButtonIsChangedStatusTest {
             assertionIsTextExist(OFF)
             assertIsToastMessagePresent(MESSAGE_NO_RULES_ADDED)
         }
-
         with(RulesScreen) {
             actionOpenRules()
             actionClickAddRuleButton()
         }
-
         with(CreateRuleScreen) {
             actionTypeRuleName(SIMPLE_RULE_NAME)
             actionClickAddTriggerButton()
             actionChooseTriggerWithName(timeframe)
         }
-
         with(CreateTimeframeScreen) {
             actionCreateTimeFrame(
                 hoursStart1,
@@ -57,12 +50,10 @@ class ServiceButtonIsChangedStatusTest {
                 repeatEverySeconds
             )
         }
-
         with(CreateRuleScreen) {
             actionAddAction(elementInActionList)
             actionSaveRule()
         }
-
         with(OverviewScreen) {
             actionOpenOverviewTab()
             actionClickOnServiceButton()
@@ -71,7 +62,6 @@ class ServiceButtonIsChangedStatusTest {
             actionClickOnServiceButton()
             assertionIsTextExist(OFF)
         }
-
         with(RulesScreen) {
             actionOpenRules()
             actionDeleteRuleByName(SIMPLE_RULE_NAME)
